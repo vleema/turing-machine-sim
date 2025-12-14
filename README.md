@@ -10,7 +10,7 @@ Since the project is made in rust, you can use it like this:
 echo "input" | cargo r --release -- <machine_description_file>
 ```
 
-The program will read from stdin until EOF.
+The program will read from stdin until EOF. The exit code will be 0 if the machine ends in a accepting state and 1 otherwise.
 
 The machine description comes from a file in the following format:
 
@@ -41,7 +41,6 @@ t e s n i
 _
 0
 1
-0 _ 1 _ R
 1 t 2 n R
 2 e 3 i R
 3 s 4 c R

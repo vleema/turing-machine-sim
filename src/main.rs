@@ -1,7 +1,9 @@
 use std::{
     collections::{HashMap, HashSet, VecDeque},
+    error::Error,
     fs::File,
     io::{BufRead, BufReader},
+    process::ExitCode,
 };
 
 type State = usize;
@@ -30,11 +32,12 @@ impl TryFrom<char> for Direction {
 #[derive(Debug)]
 struct Machine {
     tape: Tape,
+    head: usize,
     alphabet: Alphabet,
     blank: Symbol,
-    state: State,
-    head: usize,
     accepting: HashSet<State>,
+    init_state: State,
+    state: State,
     transitions: HashMap<(State, Symbol), (State, Symbol, Direction)>,
 }
 
@@ -48,9 +51,10 @@ impl Machine {
     ) -> Self {
         Self {
             tape: VecDeque::new(),
+            head: 0,
             alphabet,
             blank,
-            head: 0,
+            init_state,
             state: init_state,
             accepting,
             transitions,
@@ -119,13 +123,14 @@ impl Machine {
         self.tape.iter().collect::<String>()
     }
 
-    fn clear_tape(&mut self) {
+    fn reset(&mut self) {
+        self.state = self.init_state;
         self.head = 0;
         self.tape.clear();
     }
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<ExitCode, Box<dyn Error>> {
     let Some(path) = std::env::args().nth(1) else {
         println!("usage: executable <machine_description_path>");
         return Err("please specify a path for them machine description".into());
@@ -203,13 +208,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut machine = Machine::new(alphabet, blank, accepting, init_state, transitions);
 
+    let mut exit_code = 0;
     for line in std::io::stdin().lock().lines() {
         let tape = line?;
-        machine.clear_tape();
+        machine.reset();
         machine.extend(&tape);
-        machine.execute();
+        exit_code = if machine.execute() { 0 } else { 1 };
         println!("{}", machine.tape());
     }
 
-    Ok(())
+    Ok(exit_code.into())
 }
