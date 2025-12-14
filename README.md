@@ -41,11 +41,12 @@ t e s n i
 _
 0
 1
+# Test -> Nice
 1 t 2 n R
 2 e 3 i R
 3 s 4 c R
 4 t 0 e R
-
+# Nice -> Test
 1 n 2 t R
 2 i 3 e R
 3 c 4 s R
@@ -58,5 +59,5 @@ This is a machine for substituting "nice" for "test" and "test" for "nice".
 
 Feel free to do some pull requests or something, would be nice to have:
 
-- [ ] A comment string for the description file, e.g. "#".
+- [x] A comment string for the description file, e.g. "#".
 - [ ] A report mechanism for line number with parsing error.
