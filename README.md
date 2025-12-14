@@ -1,4 +1,4 @@
-# Turing machines simulator
+# Turing machine simulator
 
 Simple Turing machine simulator for helping me doing some exercise in a computability discipline.
 

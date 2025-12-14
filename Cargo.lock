@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "turing-machines"
+name = "turing-machine-sim"
 version = "0.1.0"
