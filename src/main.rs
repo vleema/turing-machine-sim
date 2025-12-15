@@ -15,6 +15,7 @@ type Tape = VecDeque<char>;
 enum Direction {
     Right,
     Left,
+    None,
 }
 
 impl TryFrom<char> for Direction {
@@ -24,6 +25,7 @@ impl TryFrom<char> for Direction {
         Ok(match value {
             'R' => Self::Right,
             'L' => Self::Left,
+            'N' => Self::None,
             _ => Err("invalid character for direction")?,
         })
     }
@@ -115,6 +117,7 @@ impl Machine {
                 }
                 self.head.min(self.head.wrapping_sub(1))
             }
+            _ => self.head,
         };
         true
     }
