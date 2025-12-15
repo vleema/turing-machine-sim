@@ -1,0 +1,33 @@
+### alphabet
+a b
+### blank symbol
+_
+### accepting states
+1
+### initial state
+1
+
+### transitions
+# odd count
+0 b 1 b R
+
+# erase a or even count
+1 a 2 _ R
+1 b 0 b R
+
+# go to string end
+2 a 2 a R
+2 b 2 b R
+2 _ 3 _ L
+
+# erase b
+3 b 4 _ L
+
+# check if it was the last letter
+4 _ 1 _ N
+4 b 5 b L
+
+# go to string start
+5 a 5 a L
+5 b 5 b L
+5 _ 1 _ R
