@@ -34,7 +34,7 @@ transitions = λ | <current_state> <read_symbol> <next_state> <write_symbol> <di
 
 The $\lambda$ is the empty string.
 
-The symbols are utf-8 characters and the states are unsigned integers, direction could be either R (right) or L (left). A example file would be the following:
+The symbols are utf-8 characters and the states are unsigned integers, direction could be either R (right), L (left) or N (None). A example file would be the following:
 
 ```plain
 t e s n i
