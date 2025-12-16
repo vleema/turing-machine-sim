@@ -1,0 +1,21 @@
+### alphabet
+0 1 a
+### blank symbol
+_
+### accepting states
+4
+### initial state
+1
+### transitions
+1 0 2 0 R
+
+2 0 3 0 R
+
+3 1 4 1 R
+3 a 5 a R
+
+4 0 0 0 N
+4 1 0 1 N
+4 a 0 a N
+
+5 1 1 1 R
