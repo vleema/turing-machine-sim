@@ -171,7 +171,7 @@ fn main() -> Result<ExitCode, Box<dyn Error>> {
         .split_whitespace()
         .flat_map(|s| s.parse::<State>().ok())
         .next()
-        .ok_or("you should specify a intial state")?;
+        .ok_or("you should specify a initial state")?;
     let transitions: HashMap<_, _> = lines
         .map_while(Result::ok)
         .filter(|s| !s.is_empty())
