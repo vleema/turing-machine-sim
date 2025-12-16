@@ -140,9 +140,11 @@ fn main() -> Result<ExitCode, Box<dyn Error>> {
     };
 
     let data = BufReader::new(File::open(path)?);
-    let mut lines = data
-        .lines()
-        .filter(|l| l.as_ref().is_ok_and(|s| !s.starts_with('#')) || l.is_err());
+    let mut lines = data.lines().filter(|l| {
+        l.as_ref()
+            .is_ok_and(|s| !s.starts_with('#') && !s.is_empty())
+            || l.is_err()
+    });
 
     // TODO:
     // - Report line number with parsing error.
