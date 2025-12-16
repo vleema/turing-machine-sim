@@ -198,7 +198,8 @@ fn main() -> Result<ExitCode, Box<dyn Error>> {
                 .next()
                 .and_then(|s| s.chars().next())
                 .ok_or("the write symbol was not specified")?;
-            if !alphabet.contains(&head_sym) && write_sym != blank {
+            if !alphabet.contains(&write_sym) && write_sym != blank {
+                println!("{:?}", write_sym != blank);
                 return Err("invalid write symbol, doesn't exist in the alphabet");
             }
             let dir = iter
